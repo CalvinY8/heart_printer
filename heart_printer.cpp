@@ -3,17 +3,18 @@
 #include <algorithm>
 #include <vector>
 
-class printer {
+class printer_super {
 
     public:
+        void print_title(std::string title){
+            std::cout << ">popular " + title + " cookies" << std::endl;
+        }
 
-        void print_list_alphabetical(std::vector<std::string> str_vect, std::string title){
+        void print_list_alphabetical(std::vector<std::string> str_vect){
             
             //sort alphabetically
             //ascending order by default
             std::sort(str_vect.begin(), str_vect.end());
-            
-            std::cout << title << std::endl;
             
             for (std::string x : str_vect){
                 std::cout << x << std::endl;
@@ -51,30 +52,54 @@ class printer {
             */
         }
 
+        void print_menu(std::string title, std::vector<std::string> cookie_vect){
+            print_title(title);
+            print_list_alphabetical(cookie_vect);
+            print_heart();
+        }
+
 };
+
+class printer_france : public printer_super {
+    public:
+    std::string title = "french";
+
+    std::vector<std::string> cookie_vect = {
+        "Petit Beurre",
+        "Macarons",
+        "Biscuit rose de Reims"
+    };
+
+    void print_menu(){
+        printer_super::print_menu(title, cookie_vect);
+    }
+
+};
+
+class printer_uk : public printer_super {
+    public:
+    std::string title = "uk";
+
+    std::vector<std::string> cookie_vect = {
+    "custard cream",
+    "hobnobs",
+    "rich tea"
+    };
+
+    void print_menu(){
+        printer_super::print_menu(title, cookie_vect);
+    }
+
+};
+
 
 int main() {
 
-    std::string title = "popular uk cookies";
-    
-    std::vector<std::string> cookie_vect = {
-    "custard cream",
-    "malted milk",
-    "rich tea",
-    "chocolate hobnob",
-    "ginger nut",
-    "bourbon",
-    "jammy dodger",
-    "jaffa cake",
-    "shortbread",
-    "biscoff",
-    "chocolate digestive"
-    };
+    printer_france france_inst;
+    printer_uk uk_inst;
 
-    printer printer_inst;
-
-    printer_inst.print_list_alphabetical(cookie_vect, title);
-    printer_inst.print_heart();
+    france_inst.print_menu();
+    uk_inst.print_menu();
 
     return 0;
 }
