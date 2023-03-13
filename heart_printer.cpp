@@ -5,7 +5,7 @@
 
 class printer_super {
 
-    public:
+    private:
         void print_title(std::string title){
             std::cout << ">popular " + title + " cookies" << std::endl;
         }
@@ -52,6 +52,7 @@ class printer_super {
             */
         }
 
+    protected:
         void print_menu(std::string title, std::vector<std::string> cookie_vect){
             print_title(title);
             print_list_alphabetical(cookie_vect);
@@ -61,7 +62,7 @@ class printer_super {
 };
 
 class printer_france : public printer_super {
-    public:
+    private:
     std::string title = "french";
 
     std::vector<std::string> cookie_vect = {
@@ -70,6 +71,7 @@ class printer_france : public printer_super {
         "Biscuit rose de Reims"
     };
 
+    public:
     void print_menu(){
         printer_super::print_menu(title, cookie_vect);
     }
@@ -77,7 +79,7 @@ class printer_france : public printer_super {
 };
 
 class printer_uk : public printer_super {
-    public:
+    private:
     std::string title = "uk";
 
     std::vector<std::string> cookie_vect = {
@@ -86,6 +88,7 @@ class printer_uk : public printer_super {
     "rich tea"
     };
 
+    public:
     void print_menu(){
         printer_super::print_menu(title, cookie_vect);
     }
